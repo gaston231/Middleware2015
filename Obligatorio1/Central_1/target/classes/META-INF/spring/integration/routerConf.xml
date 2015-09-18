@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/integration
+			http://www.springframework.org/schema/integration/spring-integration.xsd">
+
+	<channel id="entradaVentanilla"/>
+
+	<router input-channel="entradaVentanilla">
+		<beans:bean class="org.springframework.integration.samples.RouterConsulta"/>
+	</router>
+	
+	<channel id="pagoFactura"/>
+	<channel id="ventaEntrada"/>
+	<channel id="operacionNoSoportada"></channel>
+	
+	
+</beans:beans>
