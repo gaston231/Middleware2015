@@ -1,0 +1,11 @@
+**** web-lealtad ****
+
+Requisitos:
+1- Servidor ActiveMQ (localhost:61616) (Instalación por defecto)
+2- Base de datos MySQL (script-base.sql):
+	2.1- localhost:3306
+	2.2- user: middleware, pass:middleware
+	2.3- esquema: db_lealtad
+	2.4- tabla usuario(idusuario, puntos)
+3- Envío de mensajes a la cola "LealtadACME" con mensajes del formato "usuario-monto"
+
