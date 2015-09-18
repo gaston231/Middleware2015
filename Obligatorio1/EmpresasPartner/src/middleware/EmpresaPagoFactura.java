@@ -1,14 +1,26 @@
 package middleware;
 
+import java.util.Date;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import java.util.Date;
-
 @WebService
-public class EmpresaPagoFactura {
+public class EmpresaPagoFactura{
+	static Integer secuenciaFactura = 0;
 	@WebMethod
-	public Long PagarFactura(Long idFactura, Short moneda, double monto, Date fechaHora){
-    	return Long.MAX_VALUE;
+	public Long PagarFactura(Long idFactura, Short moneda, double monto, Date fechaHora) throws FacturaNoValida, MonedaNoValida {
+    	// Verifico moneda
+		if (moneda != 0 && moneda !=1){
+			Throwable t = new IllegalArgumentException("Argumento inválido");
+            throw new FacturaNoValida("Moneda inválida" + moneda, t);
+		}
+		// Verifico id factura
+		if (idFactura <= 0){
+			Throwable t = new IllegalArgumentException("Argumento inválido");
+            throw new FacturaNoValida("Factura inválida: " + idFactura, t);
+		}	
+		secuenciaFactura++;
+		return secuenciaFactura.longValue();
     }
 }
