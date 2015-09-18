@@ -21,7 +21,7 @@
 			<thead>
 				<tr>
 					<th>Usuario</th>
-					<th>Puntaje</th>
+					<th>Puntaje acumulado</th>
 				</tr>							
 			</thead>
 		
