@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmpresaPagoFacturaService WSDL service -->
+
+  <service name="EmpresaPagoFactura" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://middleware"/>
+      <parameter name="wsdlServiceElement" value="EmpresaPagoFacturaService"/>
+      <parameter name="schemaQualified" value="http://middleware"/>
+      <parameter name="wsdlServicePort" value="EmpresaPagoFactura"/>
+      <parameter name="className" value="middleware.EmpresaPagoFactura"/>
+      <parameter name="wsdlPortType" value="EmpresaPagoFactura"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://middleware" xmlns:retNS="http://middleware" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="pagarFactura" qname="operNS:PagarFactura" returnQName="retNS:PagarFacturaReturn" returnType="rtns:long" soapAction="">
+        <parameter xmlns:pns="http://middleware" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:idFactura" type="tns:long"/>
+        <parameter xmlns:pns="http://middleware" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:moneda" type="tns:short"/>
+        <parameter xmlns:pns="http://middleware" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:monto" type="tns:double"/>
+        <parameter xmlns:pns="http://middleware" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:fechaHora" type="tns:dateTime"/>
+      </operation>
+      <parameter name="allowedMethods" value="pagarFactura"/>
+
+  </service>
+</deployment>
