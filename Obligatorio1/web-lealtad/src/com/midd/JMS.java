@@ -39,7 +39,7 @@ public class JMS {
         	// Descompongo el mensaje recibido
             TextMessage textMessage = (TextMessage) message;
             String text = textMessage.getText();
-            System.out.println("Received1: " + text);
+            System.out.println("*** JMS: Mensaje recibido: " + text);
             
             // Agrego o actualizo el puntaje
             String puntos = String.valueOf(Integer.parseInt(text.split("-")[1])/100);
