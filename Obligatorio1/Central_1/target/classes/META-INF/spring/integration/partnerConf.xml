@@ -14,19 +14,7 @@
 			http://www.springframework.org/schema/integration/ws/spring-integration-ws.xsd">
 	
 	
-	<!-- HTTP basic authentication in Spring Security -->
-	<http>
-		<intercept-url pattern="/welcome*" access="middleware" />
-		<http-basic />
-	</http>
-
-	<authentication-manager>
-	   <authentication-provider>
-	       <user-service>
-		   <user name="servidorcentral" password="pass" authorities="middleware" />
-	       </user-service>
-	   </authentication-provider>
-	</authentication-manager>
+	
 	
 	<!-- canal de consulta de partner -->
 	<chain input-channel="consultaPartner" output-channel="respuestaPartner">

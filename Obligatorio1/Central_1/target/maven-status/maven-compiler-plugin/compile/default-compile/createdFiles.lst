@@ -1,0 +1,9 @@
+org\fing\middleware\services\ServicioRecepcionPagosService.class
+org\fing\middleware\services\ObjectFactory.class
+org\fing\middleware\services\ServicioRecepcionPagos.class
+org\fing\middleware\services\RecepcionPagos.class
+org\fing\middleware\services\ConfirmacionTransaccion.class
+org\fing\middleware\services\TransaccionPago.class
+org\fing\middleware\services\Pago.class
+org\fing\middleware\services\RecepcionPagosResponse.class
+org\fing\middleware\services\ConfirmacionPago.class

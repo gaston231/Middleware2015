@@ -38,22 +38,22 @@ public class WebServicePartner {
 		DestinationResolver<MessageChannel> channelResolver = new BeanFactoryChannelResolver(context);
 
 //		 Compose the XML message according to the server's schema
-		String requestXml =
-		"<ventaEntrada xmlns=\"http://middleware/\">" +
-				"<arg0>1</arg0>" +
-				"<arg1>1</arg1>" +
-				"<arg2>1</arg2>" +
-				"<arg3>1</arg3>" +
-		"</ventaEntrada>";
-		
-		// Compose the XML message according to the server's schema
 //		String requestXml =
-//		"<PagarFactura xmlns=\"http://middleware/\">" +
+//		"<ventaEntrada xmlns=\"http://middleware/\">" +
 //				"<arg0>1</arg0>" +
 //				"<arg1>1</arg1>" +
 //				"<arg2>1</arg2>" +
 //				"<arg3>1</arg3>" +
-//		"</PagarFactura>";
+//		"</ventaEntrada>";
+		
+		// Compose the XML message according to the server's schema
+		String requestXml =
+		"<PagarFactura xmlns=\"http://middleware/\">" +
+				"<arg0>1</arg0>" +
+				"<arg1>1</arg1>" +
+				"<arg2>1</arg2>" +
+				"<arg3>1</arg3>" +
+		"</PagarFactura>";
 		
 		// Create the Message object
 		Message<String> message = MessageBuilder.withPayload(requestXml).build();
