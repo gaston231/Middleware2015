@@ -4,9 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.springframework.integration.samples</groupId>
   <artifactId>Central_1</artifactId>
+   <packaging>war</packaging>
   <version>4.1.0.BUILD-SNAPSHOT</version>
   <name>Central 1</name>
-  <url>http://projects.spring.io/spring-integration</url>
+  <url>http://localhost:8080/</url>
   <organization>
     <name>SpringIO</name>
     <url>https://spring.io</url>
@@ -101,6 +102,66 @@
       <version>4.1.6.RELEASE</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+     <groupId>org.jvnet.jax-ws-commons</groupId>
+	 <artifactId>jaxws-maven-plugin</artifactId>
+	 <version>2.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+	    <groupId>javax.jms</groupId>
+	    <artifactId>jms</artifactId>
+	    <version>1.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.activemq</groupId>
+		<artifactId>activemq-core</artifactId>
+		<version>5.7.0</version>
+	</dependency>
+	
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-war-plugin</artifactId>
+    		<version>2.6</version>
+    		<configuration>
+    		  		<failOnMissingWebXml>false</failOnMissingWebXml>       
+    		</configuration>
+        </plugin>    
+        
+        <plugin>
+    		<groupId>org.jvnet.jax-ws-commons</groupId>
+   			<artifactId>jaxws-maven-plugin</artifactId>
+    		<version>2.3</version>
+    		<executions>
+		        <execution>
+		            <id>basic</id>
+		            <phase>generate-sources</phase>
+		            <goals>
+		                <goal>wsimport</goal>
+		            </goals>
+		        </execution>
+    		</executions>
+    		<configuration>
+    			<vmArgs>
+   					<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+				</vmArgs>
+       			<keep>true</keep>
+		        <wsdlDirectory>${basedir}\src\main\resources</wsdlDirectory>
+		        <wsdlFiles>
+		            <wsdlFile>${basedir}\src\wsdl\payment-service.wsdl
+		            </wsdlFile>
+		        </wsdlFiles>
+		        <sourceDestDir>${basedir}\src\main\java\org\springframework\integration\samples\ventanillas</sourceDestDir>
+		        <verbose>true</verbose>
+		        <target>2.1</target>
+    		</configuration>
+		</plugin>
+
+    </plugins>
+  </build>
+
   <description>Central Spring Integration</description>
 </project>
