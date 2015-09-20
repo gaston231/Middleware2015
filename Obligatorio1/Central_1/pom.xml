@@ -154,7 +154,7 @@
 		            <wsdlFile>${basedir}\src\wsdl\payment-service.wsdl
 		            </wsdlFile>
 		        </wsdlFiles>
-		        <sourceDestDir>${basedir}\src\main\java\org\springframework\integration\samples\ventanillas</sourceDestDir>
+		        <sourceDestDir>${basedir}\services\middleware\fing\org</sourceDestDir>
 		        <verbose>true</verbose>
 		        <target>2.1</target>
     		</configuration>
