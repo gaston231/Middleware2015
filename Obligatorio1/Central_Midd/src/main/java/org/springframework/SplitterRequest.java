@@ -23,10 +23,10 @@ public class SplitterRequest {
 		
 		//Uso XSLT o XPATH para parsear la entrada de el request de entrada
 		
-		String dataXML = "C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml";
+		String dataXML = "C:\\Users\\cvelez.MGAP\\workspaceMars\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml";
 				;
-		String inputXSL = "C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.xsl";
-		String outputHTML = "C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.html";
+		String inputXSL = "C:\\Users\\cvelez.MGAP\\workspaceMars\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.xsl";
+		String outputHTML = "C:\\Users\\cvelez.MGAP\\workspaceMars\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.html";
 		
 		
 		XSLTTest test = new XSLTTest();
