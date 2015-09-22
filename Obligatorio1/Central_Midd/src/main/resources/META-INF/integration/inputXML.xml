@@ -1,0 +1,27 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.middleware.fing.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:recepcionPagos>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            <fechaCobro>1</fechaCobro>
+            <!--Optional:-->
+            <formaPago>exew</formaPago>
+            <identificadorCliente>1</identificadorCliente>
+            <numeroSucursal>1</numeroSucursal>
+            <!--Zero or more repetitions:-->
+            <pagos>
+               <!--Optional:-->
+               <codigoMoneda>1</codigoMoneda>
+               <!--Zero or more repetitions:-->
+               <datoAdicional>1</datoAdicional>
+               <identificadorPago>1</identificadorPago>
+               <monto>1</monto>
+               <!--Optional:-->
+               <nombreGestion>1</nombreGestion>
+            </pagos>
+         </arg0>
+      </ser:recepcionPagos>
+   </soapenv:Body>
+</soapenv:Envelope>

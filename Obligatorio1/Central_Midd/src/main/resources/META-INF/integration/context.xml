@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+	xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+	http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.1.xsd
+	http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.1.xsd
+	http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-4.1.xsd
+	http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml-4.1.xsd
+	http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.1.xsd
+	http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/http/spring-integration-mail-4.1.xsd">
+
+	                   
+	<int-http:inbound-gateway request-channel="inboundChannel"
+		path="/ws-facturas/otherservices" supported-methods="POST"
+		reply-channel="response"/>
+	
+
+	
+	<int:channel id="inboundChannel">
+		<int:interceptors>
+			<int:wire-tap channel="logger" />
+		</int:interceptors>
+	</int:channel>
+	
+	
+	<int:service-activator input-channel="inboundChannel" output-channel="splitterInput" method="obtenerRequest">
+   	 	<bean class="org.springframework.Request"/>
+	</int:service-activator>	
+	
+	
+	<!--  SPLITTER -->
+	
+	<int:channel id="splitterInput" />
+	
+	<int:splitter input-channel="splitterInput"
+		output-channel="splitterOutput">
+		<bean class="org.springframework.SplitterRequest"/>
+	</int:splitter>
+	
+	<int:channel id="splitterOutput" />
+	 
+	
+	<int:channel id="response" />
+    
+    <int:logging-channel-adapter log-full-message="true" id="logger"/>
+	
+
+	
+	
+	
+</beans>
