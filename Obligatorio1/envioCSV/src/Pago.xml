@@ -2,14 +2,14 @@
 
 <pagos>
 	<idCliente> 111</idCliente>
-	<fechayhoraCobro> ""2015-09-10""</fechayhoraCobro>
+	<fechayhoraCobro>2015-09-10 12:12 </fechayhoraCobro>
 	<numSucursal> 222</numSucursal>
 	<formaPago> "Efectivo"</formaPago>
 	 -- pago
 	<nombreGestion> "Entradas"</nombreGestion>
 	<idPago> 333</idPago>
 	<codMoneda> "Pesos"</codMoneda>
-	<importe> 44,4</importe>
+	<importe> 44.4</importe>
 	--otros 
 	<dato> "test test test test test test test test test test test test test test test"</dato>
 </pagos>	
