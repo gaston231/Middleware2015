@@ -5,21 +5,21 @@
          <!--Optional:-->
          <arg0>
             <!--Optional:-->
-            <fechaCobro>1</fechaCobro>
+            <fechaCobro>10/10/12</fechaCobro>
             <!--Optional:-->
-            <formaPago>exew</formaPago>
+            <formaPago>E</formaPago>
             <identificadorCliente>1</identificadorCliente>
             <numeroSucursal>1</numeroSucursal>
             <!--Zero or more repetitions:-->
             <pagos>
                <!--Optional:-->
-               <codigoMoneda>1</codigoMoneda>
+               <codigoMoneda>UYU</codigoMoneda>
                <!--Zero or more repetitions:-->
-               <datoAdicional>1</datoAdicional>
-               <identificadorPago>1</identificadorPago>
-               <monto>1</monto>
+               <datoAdicional>223231</datoAdicional>
+               <identificadorPago>33443</identificadorPago>
+               <monto>1243423</monto>
                <!--Optional:-->
-               <nombreGestion>1</nombreGestion>
+               <nombreGestion>Factura</nombreGestion>
             </pagos>
          </arg0>
       </ser:recepcionPagos>

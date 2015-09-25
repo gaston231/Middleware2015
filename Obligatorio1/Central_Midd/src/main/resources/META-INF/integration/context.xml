@@ -21,7 +21,7 @@
 		path="/ws-facturas/otherservices" supported-methods="POST"
 		reply-channel="response"/>
 	
-
+	<int:channel id="response" />
 	
 	<int:channel id="inboundChannel">
 		<int:interceptors>
@@ -46,8 +46,42 @@
 	
 	<int:channel id="splitterOutput" />
 	 
+	<!--  ROUTER CONF -->
 	
-	<int:channel id="response" />
+	<int:router input-channel="splitterOutput">
+		<bean class="org.springframework.RouterConsulta"/>
+	</int:router>
+	
+	<int:channel id="pagoFactura"/>
+	<int:channel id="ventaEntrada"/>
+	<int:channel id="operacionNoSoportada"/>
+	
+
+	
+	
+	<!-- CONSULTA PARTNER SEGUN ROUTER -->
+	
+	<!--  PAGO FACTURA PARTNER -->
+
+	<int:chain input-channel="ventaEntrada" output-channel="respuestaPartnerPagoFactura">
+		<int-http:outbound-gateway url="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura"/>
+	</int:chain>
+	
+	
+	<!--  VENTA ENTRADA PARTNER -->
+	
+	<int:chain input-channel="ventaEntrada" output-channel="respuestaPartnerVentaEntrada">
+		<int-http:outbound-gateway url="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"/>
+	</int:chain>
+
+
+	<!-- RESPUESTA LOGUEADA EN CONSOLA  
+	<stream:stdout-channel-adapter id="respuestaPartnerPagoFactura"/> 
+	<stream:stdout-channel-adapter id="respuestaPartnerVentaEntrada"/>
+-->
+	 
+	 <int:channel id="respuestaPartnerPagoFactura"/>
+	<int:channel id="respuestaPartnerVentaEntrada"/>
     
     <int:logging-channel-adapter log-full-message="true" id="logger"/>
 	
