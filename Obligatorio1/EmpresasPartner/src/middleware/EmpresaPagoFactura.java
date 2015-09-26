@@ -14,7 +14,7 @@ public class EmpresaPagoFactura{
 	@WebMethod
 	public Long PagarFactura(Long idFactura, Short moneda, double monto, Date fechaHora) throws FacturaNoValida, MonedaNoValida {
     	// Verifico moneda
-		if (moneda != 0 && moneda !=1){
+		if (moneda != 1 && moneda !=2){
 			Throwable t = new IllegalArgumentException("Argumento inválido");
             throw new FacturaNoValida("Moneda inválida" + moneda, t);
 		}
