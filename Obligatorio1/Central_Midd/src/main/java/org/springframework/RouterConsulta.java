@@ -18,13 +18,13 @@ public class RouterConsulta {
 				return "requestPartnerPago";
 			}
 			
-			if (temp.toLowerCase().contains("ventaentradas")) {
+			if (temp.toLowerCase().contains("ventaentrada")) {
 				System.out.println("LOG-ROUTER:" + temp);
 				return "requestPartnerVentaEntrada";
 	
 			}
 			
-			if (temp.toLowerCase().contains("pagooffline")) {
+			if (temp.toLowerCase().contains("pagaroffline")) {
 				System.out.println("LOG-ROUTER:" + temp);
 				return "salidaOffLine";
 	

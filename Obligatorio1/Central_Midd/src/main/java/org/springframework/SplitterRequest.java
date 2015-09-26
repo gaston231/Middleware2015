@@ -45,14 +45,14 @@ public class SplitterRequest {
 		
 		ArrayList<String> retorno = new ArrayList<String>();
  		//Uso XSLT o XPATH para parsear la entrada de el request de entrada
-		File stylesheet = new File("C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.xsl");
-        File xmlSource = new File("C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml");
-        String salida = "C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\salida.xml";
-        boolean eliminado = xmlSource.delete();     	   
+		File stylesheet = new File("C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.xsl");
+        File xmlSource = new File("C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml");
+        String salida = "C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\salida.xml";
+        //boolean eliminado = xmlSource.delete();     	   
         	
         
         
-        FileWriter fichero = new FileWriter("C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml");
+        FileWriter fichero = new FileWriter("C:\\Users\\cvelez.MGAP\\Desktop\\Midd2015\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml");
 
 	    fichero.write(input + "\r\n");
 	    fichero.close();
@@ -69,7 +69,7 @@ public class SplitterRequest {
 			
         // ENVIAMOS LA SALIDA DEL SPLITTER AL ROUTER
         
-        Pattern p = Pattern.compile("(<mid:PagarFactura.*?</mid:PagarFactura>|<mid:ventaEntradas.*?</mid:ventaEntradas>|<PagarOffline.*?</PagarOffline>)",Pattern.CASE_INSENSITIVE);
+        Pattern p = Pattern.compile("(<mid:PagarFactura.*?</mid:PagarFactura>|<mid:ventaEntrada.*?</mid:ventaEntrada>|<PagarOffline.*?</PagarOffline>)",Pattern.CASE_INSENSITIVE);
       
         String str = "";
         FileReader f = new FileReader(salida);
