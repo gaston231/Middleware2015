@@ -3,7 +3,7 @@
 <xsl:output method="text" omit-xml-declaration="yes" indent="no"/>
 <xsl:template match="/">
 idCliente, codMoneda, importe, fecha , hora 
-<xsl:for-each select="//pagos">
+<xsl:for-each select="//PagarOffline">
 
          
 <xsl:value-of select="concat(arg0,',',arg1,',',arg2,',',substring(arg3,1,10),',',substring(arg3,11,16),'&#xA;')"/>
