@@ -25,7 +25,7 @@ public class EmpresaVentaEntradas {
 		if (cantidadEntradas > cantidadEntradasDisponibles){
             //throw new CantidadNoDisponible("Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles);
 			resultado.codigoResultado = -1;
-			resultado.mensajeResultado = "Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles;
+			resultado.mensajeResultado = "Error: Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles;
 			resultado.idCobro = idCobroError.longValue();
 		} else {
 			for (int i = 1; i <= cantidadEntradas; i++){

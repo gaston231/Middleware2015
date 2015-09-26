@@ -21,7 +21,7 @@ public class EmpresaPagoFactura{
 			//Throwable t = new IllegalArgumentException("Argumento inválido");
             //throw new FacturaNoValida("Moneda inválida" + moneda, t);
 			resultado.codigoResultado = -1;
-			resultado.mensajeResultado = "Moneda inválida: " + moneda;
+			resultado.mensajeResultado = "Error: Moneda inválida: " + moneda;
 			huboError = true;
 		}
 		
@@ -30,7 +30,7 @@ public class EmpresaPagoFactura{
 			//Throwable t = new IllegalArgumentException("Argumento inválido");
             //throw new FacturaNoValida("Factura inválida: " + idFactura, t);
 			resultado.codigoResultado = -2;
-			resultado.mensajeResultado = "Factura inválida: " + idFactura;
+			resultado.mensajeResultado = "Error: Factura inválida: " + idFactura;
 			huboError = true;
 		}	
 		
