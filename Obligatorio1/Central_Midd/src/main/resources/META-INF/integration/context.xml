@@ -60,9 +60,17 @@
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
        </int:chain>
        
+    <bean name="autenticacion" class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+    <property name="credentials">
+        <bean class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+            <constructor-arg value="servidorcentral"/>
+            <constructor-arg value="pass"/>
+        </bean>
+    </property>
+	</bean>   
         <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartnerVentaEntrada">
              
-               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas" />
+               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
        </int:chain>   
  
 	<stream:stdout-channel-adapter id="responsePartnerPago"/>
@@ -71,8 +79,25 @@
          
     <int:channel id="salidaOffLine" />
         
-       <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
-               <bean class="org.springframework.crearCSV"/>
-       </int:service-activator>
+      <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
+              <bean class="org.springframework.crearCSV"/>
+      </int:service-activator>
+       
+       
+     
+     
+    
+	 
+	<!--  ROUTER CONF -->
+	
+	<int:router input-channel="responsePartnerPago">
+		<bean class="org.springframework.RespuestaPartner"/>
+	</int:router>
+
+       
+    <int:channel id="entradaLealtad"/>
+	<int:service-activator input-channel="entradaLealtad" method="enviarMensaje">
+		<bean class="org.springframework.envioJMSEndpoint"/>
+	</int:service-activator> 
        
  </beans>
