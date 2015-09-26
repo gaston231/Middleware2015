@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:int="http://www.springframework.org/schema/integration"
-	xmlns:int-file="http://www.springframework.org/schema/integration/file"
-	xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
-	xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
-	xmlns:int-http="http://www.springframework.org/schema/integration/http"
-	xmlns:int-stream="http://www.springframework.org/schema/integration/stream"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="
-	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-	http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.1.xsd
-	http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.1.xsd
-	http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-4.1.xsd
-	http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml-4.1.xsd
-	http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.1.xsd
-	http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/http/spring-integration-mail-4.1.xsd">
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-file="http://www.springframework.org/schema/integration/file"
+       xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+       xmlns:int-xml="http://www.springframework.org/schema/integration/xml"
+       xmlns:int-http="http://www.springframework.org/schema/integration/http"
+       xmlns:int-ws="http://www.springframework.org/schema/integration/ws"
+       xmlns:stream="http://www.springframework.org/schema/integration/stream"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" 
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+       http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-4.1.xsd
+       http://www.springframework.org/schema/integration/stream http://www.springframework.org/schema/integration/stream/spring-integration-stream-4.1.xsd
+       http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-4.1.xsd
+       http://www.springframework.org/schema/integration/xml http://www.springframework.org/schema/integration/xml/spring-integration-xml-4.1.xsd
+       http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.1.xsd
+       http://www.springframework.org/schema/integration/mail http://www.springframework.org/schema/integration/http/spring-integration-mail-4.1.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+       http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-4.1.xsd">
 
-	                   
+
 	<int-http:inbound-gateway request-channel="inboundChannel"
 		path="/ws-facturas/otherservices" supported-methods="POST"
-		reply-channel="response"/>
+		reply-channel="response"/>	
 	
 	<int:channel id="response" />
 	
-	<int:channel id="inboundChannel">
-		<int:interceptors>
-			<int:wire-tap channel="logger" />
-		</int:interceptors>
-	</int:channel>
-	
+	<int:channel id="inboundChannel"/>
+
 	
 	<int:service-activator input-channel="inboundChannel" output-channel="splitterInput" method="obtenerRequest">
    	 	<bean class="org.springframework.Request"/>
 	</int:service-activator>	
-	
-	
-	<!--  SPLITTER -->
+	   
+	   <!--  SPLITTER -->
 	
 	<int:channel id="splitterInput" />
 	
@@ -52,41 +51,28 @@
 		<bean class="org.springframework.RouterConsulta"/>
 	</int:router>
 	
-	<int:channel id="pagoFactura"/>
-	<int:channel id="ventaEntrada"/>
-	<int:channel id="operacionNoSoportada"/>
+		
+	<int:channel id="requestPartnerPago" />
+	<int:channel id="requestPartnerVentaEntrada" />	
 	
-
+	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartnerPago">
+             
+               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
+       </int:chain>
+       
+        <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartnerVentaEntrada">
+             
+               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas" />
+       </int:chain>   
+ 
+	<stream:stdout-channel-adapter id="responsePartnerPago"/>
 	
-	
-	<!-- CONSULTA PARTNER SEGUN ROUTER -->
-	
-	<!--  PAGO FACTURA PARTNER -->
-
-	<int:chain input-channel="ventaEntrada" output-channel="respuestaPartnerPagoFactura">
-		<int-http:outbound-gateway url="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura"/>
-	</int:chain>
-	
-	
-	<!--  VENTA ENTRADA PARTNER -->
-	
-	<int:chain input-channel="ventaEntrada" output-channel="respuestaPartnerVentaEntrada">
-		<int-http:outbound-gateway url="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"/>
-	</int:chain>
-
-
-	<!-- RESPUESTA LOGUEADA EN CONSOLA  
-	<stream:stdout-channel-adapter id="respuestaPartnerPagoFactura"/> 
-	<stream:stdout-channel-adapter id="respuestaPartnerVentaEntrada"/>
--->
-	 
-	 <int:channel id="respuestaPartnerPagoFactura"/>
-	<int:channel id="respuestaPartnerVentaEntrada"/>
-    
-    <int:logging-channel-adapter log-full-message="true" id="logger"/>
-	
-
-	
-	
-	
-</beans>
+	<stream:stdout-channel-adapter id="responsePartnerVentaEntrada"/>     
+         
+    <int:channel id="salidaOffLine" />
+        
+       <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
+               <bean class="org.springframework.crearCSV"/>
+       </int:service-activator>
+       
+ </beans>
