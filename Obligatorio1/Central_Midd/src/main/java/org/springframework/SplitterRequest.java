@@ -48,7 +48,7 @@ public class SplitterRequest {
 		File stylesheet = new File("C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\request.xsl");
         File xmlSource = new File("C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\inputXML.xml");
         String salida = "C:\\Users\\Gastón\\Facultad\\Middleware\\Repo\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\salida.xml";
-        //boolean eliminado = xmlSource.delete();     	   
+        boolean eliminado = xmlSource.delete();     	   
         	
         
         
