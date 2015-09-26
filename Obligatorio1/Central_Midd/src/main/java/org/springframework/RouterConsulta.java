@@ -24,7 +24,7 @@ public class RouterConsulta {
 	
 			}
 			
-			if (temp.toLowerCase().contains("pagooffline")) {
+			if (temp.toLowerCase().contains("pagaroffline")) {
 				System.out.println("LOG-ROUTER:" + temp);
 				return "salidaOffLine";
 	
