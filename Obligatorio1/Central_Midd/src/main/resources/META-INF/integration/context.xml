@@ -60,12 +60,17 @@
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
        </int:chain>
        
-             
-              
+    <bean name="autenticacion" class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+    <property name="credentials">
+        <bean class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+            <constructor-arg value="servidorcentral"/>
+            <constructor-arg value="pass"/>
+        </bean>
+    </property>
+	</bean>   
         <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartnerVentaEntrada">
              
-             	
-               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas" />
+               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
        </int:chain>   
  
 	<stream:stdout-channel-adapter id="responsePartnerPago"/>
@@ -83,7 +88,8 @@
      
     
 	 
-	<!--  ROUTER CONF -->
+	<!--  ROUTER CONFIGURACION DE RESPUESTA PARTNER -->
+	
 	
 	<int:router input-channel="responsePartnerPago">
 		<bean class="org.springframework.RespuestaPartner"/>
