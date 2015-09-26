@@ -6,7 +6,10 @@ import java.util.Date;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import com.sun.xml.ws.developer.SchemaValidation;
+
 @WebService
+@SchemaValidation
 public class EmpresaVentaEntradas {
 	static Integer cantidadEntradasDisponibles = 20;
 	static Long idCobro = (long) 0;
@@ -17,7 +20,7 @@ public class EmpresaVentaEntradas {
 		ResultadoVenta result = new ResultadoVenta();
 		result.codigosDeEntrada = new ArrayList<String>();
 		if (cantidadEntradas > cantidadEntradasDisponibles){
-            throw new CantidadNoDisponible("Cantidad no disponible. Máximo dispoinible: " + cantidadEntradasDisponibles);
+            throw new CantidadNoDisponible("Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles);
 		}
 		for (int i = 1; i <= cantidadEntradas; i++){
 			result.codigosDeEntrada.add(idEntradas.toString());
