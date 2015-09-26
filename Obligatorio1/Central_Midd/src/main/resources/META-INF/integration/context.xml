@@ -79,9 +79,21 @@
          
     <int:channel id="salidaOffLine" />
         
-       <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
-               <bean class="org.springframework.crearCSV"/>
-       </int:service-activator>
+      <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
+              <bean class="org.springframework.crearCSV"/>
+      </int:service-activator>
+       
+       
+     
+     
+    
+	 
+	<!--  ROUTER CONF -->
+	
+	<int:router input-channel="responsePartnerPago">
+		<bean class="org.springframework.RespuestaPartner"/>
+	</int:router>
+
        
     <int:channel id="entradaLealtad"/>
 	<int:service-activator input-channel="entradaLealtad" method="enviarMensaje">
