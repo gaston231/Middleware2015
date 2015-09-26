@@ -47,11 +47,7 @@ public class Request {
 
 
 	public String obtenerRequest(String requestXML) throws Exception {
-
-		ClassPathXmlApplicationContext context =
-				new ClassPathXmlApplicationContext("/META-INF/integration/context.xml");
-			DestinationResolver<MessageChannel> channelResolver = new BeanFactoryChannelResolver(context);
-
+/*
 		try {
 			
 			String xsdPath = null; // path donde esta el archivo xsd
@@ -64,15 +60,15 @@ public class Request {
             validator.validate(source);
         } catch (IOException e) {
             
-            throw new Exception(e.getMessage());
+            //throw new Exception(e.getMessage());
         }
 		catch (SAXException e) 
 		{
-			throw new Exception(e.getMessage());
+			//throw new Exception(e.getMessage());
 			
 		}
 		
-		
+	*/	
 		System.out.println(requestXML);
 		
 		return requestXML;
