@@ -3,13 +3,11 @@
    
       
          
-         <PagarFactura xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://middleware/">
-<arg0>33443</arg0>
-<arg1>
-					1
-				</arg1>
-<arg2>1243423</arg2>
-<arg3>10/10/12</arg3>
-</PagarFactura>
+         <mid:PagarFactura xmlns:mid="http://middleware/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<arg0>23123</arg0>
+<arg1>1</arg1>
+<arg2>656</arg2>
+<arg3>26/02/3050 10:50</arg3>
+</mid:PagarFactura>
       
    
