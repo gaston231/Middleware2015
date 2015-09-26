@@ -75,4 +75,9 @@
                <bean class="org.springframework.crearCSV"/>
        </int:service-activator>
        
+    <int:channel id="entradaLealtad"/>
+	<int:service-activator input-channel="entradaLealtad" method="enviarMensaje">
+		<bean class="org.springframework.envioJMSEndpoint"/>
+	</int:service-activator> 
+       
  </beans>
