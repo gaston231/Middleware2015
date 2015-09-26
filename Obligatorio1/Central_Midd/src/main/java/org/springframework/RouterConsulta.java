@@ -18,7 +18,7 @@ public class RouterConsulta {
 				return "requestPartnerPago";
 			}
 			
-			if (temp.toLowerCase().contains("ventaentradas")) {
+			if (temp.toLowerCase().contains("ventaentrada")) {
 				System.out.println("LOG-ROUTER:" + temp);
 				return "requestPartnerVentaEntrada";
 	
