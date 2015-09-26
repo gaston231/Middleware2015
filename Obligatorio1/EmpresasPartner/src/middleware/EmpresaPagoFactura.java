@@ -5,7 +5,10 @@ import java.util.Date;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import com.sun.xml.ws.developer.SchemaValidation;
+
 @WebService
+@SchemaValidation
 public class EmpresaPagoFactura{
 	static Integer secuenciaFactura = 0;
 	@WebMethod
