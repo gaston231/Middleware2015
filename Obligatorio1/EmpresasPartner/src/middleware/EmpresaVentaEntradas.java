@@ -16,7 +16,7 @@ public class EmpresaVentaEntradas {
 	static Integer idEntradas = 100000;
 	
 	@WebMethod
-	public ResultadoVenta ventaEntrada(Short cantidadEntradas, String codigoMoneda, double precioUnitario, Date fechaHora) throws CantidadNoDisponible{
+	public ResultadoVenta ventaEntrada(Long idCliente, Short cantidadEntradas, String codigoMoneda, double precioUnitario, Date fechaHora) throws CantidadNoDisponible{
 		ResultadoVenta resultado = new ResultadoVenta();
 		resultado.codigosDeEntrada = new ArrayList<String>();
 		Integer idCobroError = -1;
@@ -25,7 +25,7 @@ public class EmpresaVentaEntradas {
 		if (cantidadEntradas > cantidadEntradasDisponibles){
             //throw new CantidadNoDisponible("Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles);
 			resultado.codigoResultado = -1;
-			resultado.mensajeResultado = "Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles;
+			resultado.mensajeResultado = "Error: Cantidad no disponible. Máximo disponible: " + cantidadEntradasDisponibles;
 			resultado.idCobro = idCobroError.longValue();
 		} else {
 			for (int i = 1; i <= cantidadEntradas; i++){
@@ -37,6 +37,8 @@ public class EmpresaVentaEntradas {
 			resultado.codigoResultado = 0;
 			resultado.mensajeResultado = "OK";
 		}
+		resultado.idCliente = idCliente;
+		resultado.montoPagado = cantidadEntradas * precioUnitario;
 		return resultado;
     }
 
