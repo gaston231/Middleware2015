@@ -22,10 +22,10 @@ import org.w3c.dom.Document;
 
 public class crearCSV {
 	  public void parceXMLtoCSV(String input) throws Exception {
-	        File stylesheet = new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\style.xsl");
-	        File xmlSource = new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\in.xml");
+	        File stylesheet = new File("C:\\Middleware\\style.xsl");
+	        File xmlSource = new File("C:\\Middleware\\in.xml");
 	             
-	        FileWriter fichero = new FileWriter("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\in.xml");
+	        FileWriter fichero = new FileWriter("C:\\Middleware\\in.xml");
 		    fichero.write(input + "\r\n");
 		    fichero.close();
 		   
@@ -51,7 +51,7 @@ public class crearCSV {
 	        System.out.println(fyh[2]);
 	      
 	        Source source = new DOMSource(document);
-	        Path path = Paths.get("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv");
+	        Path path = Paths.get("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv");
 
 	        Result outputTarget;
 	        int i= 1;
@@ -63,11 +63,11 @@ public class crearCSV {
 	        	System.out.println(i);
 	        		
 	        //Random r = new Random();
-	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+i+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+i+".csv"));
 	        }
 
 	        else{
-	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv"));
 	        }
 	        
 	        

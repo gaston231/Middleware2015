@@ -55,7 +55,7 @@
 	<int:channel id="requestPartnerPago" />
 	<int:channel id="requestPartnerVentaEntrada" />	
 	
-	   <int:chain input-channel="requestPartnerPago" output-channel="entradaLealtad">
+	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartner">
              
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
        </int:chain>
@@ -70,7 +70,7 @@
 	</bean>   
         <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartner">
              
-               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
+               <int-ws:outbound-gateway uri="https://localhost:8443/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
        </int:chain>   
  
 	
@@ -89,14 +89,11 @@
 	</int:aggregator>
 	 
 	
-       
-      <!--  JMS envio a cola  --> 
-      
-
+   
+      <!--  JMS envio a cola -->
 	<int:service-activator input-channel="entradaLealtad" method="enviarMensaje">
 		<bean class="org.springframework.envioJMSEndpoint"/> 
 	</int:service-activator>   
-	
 
        
  </beans>
