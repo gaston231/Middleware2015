@@ -12,6 +12,8 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class envioJMSEndpoint {
 
@@ -37,9 +39,22 @@ public class envioJMSEndpoint {
 
         // Se crean y envían los mensajes
         for (String msj : mensaje){
-        	TextMessage message = session.createTextMessage(msj);
+        	
+        	msj = msj.replaceAll("\\r+|\\n+|\\t+|\\s+", "");
+        	msj = msj.trim();
+            Pattern p = Pattern.compile(".*<idCliente>(.*)</idCliente>.*<montoPagado>(.*)</montoPagado>", Pattern.MULTILINE);
+            Matcher m = p.matcher(msj);
+            String datos = "";
+            while (m.find()) {
+            	LOGGER.info("JMS-REG: 1:" + m.group(1).toString());
+            	LOGGER.info("JMS-REG: 2:" + m.group(2).toString());
+            	datos = datos + m.group(1).toString() + "-" + m.group(2).toString();
+            }
+            
+        	
+        	TextMessage message = session.createTextMessage(datos);
         	producer.send(message);
-        	LOGGER.info("Envío mensaje: "+msj);
+        	LOGGER.info("Envío mensaje: "+datos);
         }
         
         // Clean up

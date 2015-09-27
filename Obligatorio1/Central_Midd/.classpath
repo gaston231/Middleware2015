@@ -23,7 +23,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/cvelez.MGAP/Desktop/Midd2015/Middleware2015/Obligatorio1/Central_1/lib/activemq-all-5.12.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/cvelez.MGAP/Desktop/Midd2015/Middleware2015/Obligatorio1/Central_1/lib/javax.jms-3.1.2.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
