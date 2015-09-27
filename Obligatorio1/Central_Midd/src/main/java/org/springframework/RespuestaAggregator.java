@@ -27,37 +27,24 @@ public class RespuestaAggregator {
 			DestinationResolver<MessageChannel> channelResolver = new BeanFactoryChannelResolver(context);
 				
 		
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();   
 		
-		XPathFactory xpathFactory = XPathFactory.newInstance();
-	    XPath xpath = xpathFactory.newXPath();
-	    System.out.println("MSG " + "va a entrar al agregator");
-		ArrayList<String> colaJMS = new ArrayList<String>();
 	    
-	    for (String respuesta : respuestas) {
-	    	
-	    	
-	    	colaJMS.add(respuesta);
+	    for (String respuesta : respuestas) {	    	 
+	    
 	    	// Create the Message object
 	    	sb.append(respuesta).append("\n");
-//			sb.append(respuestas).append("XXXX");		
-//			InputSource source1 = new InputSource(new StringReader(respuesta));
-//			String msg = xpath.evaluate("/return/", source1);		
-//			System.out.println("MSG " + msg);
-
-//			sb.append(msg).append(",");		
+			
 		}
-		
+	    
 	 // Create the Message object
-		Message<ArrayList<String>> message = MessageBuilder.withPayload(colaJMS).build();
-
+		Message<List<String>> message = MessageBuilder.withPayload(respuestas).build();
+	
 		// Send the Message to the handler's input channel
 		MessageChannel channel = channelResolver.resolveDestination("entradaLealtad");
 		channel.send(message);
-		
-		
-		
-		System.out.println("termino");
+
+	 
 		return sb.toString();
 	
 

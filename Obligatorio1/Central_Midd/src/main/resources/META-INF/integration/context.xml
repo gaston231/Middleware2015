@@ -55,7 +55,7 @@
 	<int:channel id="requestPartnerPago" />
 	<int:channel id="requestPartnerVentaEntrada" />	
 	
-	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartner">
+	   <int:chain input-channel="requestPartnerPago" output-channel="entradaLealtad">
              
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
        </int:chain>
@@ -84,17 +84,11 @@
      <!--  AGREGGATOR PARA JUNTAR LAS RESPUESTAS -->
      
     <int:aggregator input-channel="responsePartner"
-		output-channel="response">
+		output-channel="response">		
 		<bean class="org.springframework.RespuestaAggregator"/>
 	</int:aggregator>
 	 
-	<!--  ROUTER CONFIGURACION DE RESPUESTA PARTNER
 	
-	
-	<int:router input-channel="responsePartnerPago">
-		<bean class="org.springframework.RespuestaPartner"/>
-	</int:router>
- -->
        
       <!--  JMS envio a cola  --> 
       
