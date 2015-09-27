@@ -22,13 +22,13 @@ import org.w3c.dom.Document;
 
 public class crearCSV {
 	  public void parceXMLtoCSV(String input) throws Exception {
-	        File stylesheet = new File("src/main/resources/META-INF/integration/style.xsl");
-	        
-	        File xmlSource = new File("src/main/resources/META-INF/integration/input.xml");        
-	        FileWriter fichero = new FileWriter("src/main/resources/META-INF/integration/input.xml");
+	        File stylesheet = new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\style.xsl");
+	        File xmlSource = new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\in.xml");
+	             
+	        FileWriter fichero = new FileWriter("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\in.xml");
 		    fichero.write(input + "\r\n");
 		    fichero.close();
-	        
+		   
 		    
 	//
 	 //       DateFormat formatter  =  new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
@@ -57,11 +57,11 @@ public class crearCSV {
 	        if (Files.exists(path)) {
 	          // file exist
 	        	Random r = new Random();
-	        	outputTarget = new StreamResult(new File("src/middleware-"+fyh[1]+'-'+fyh[2].replace(':', '_')+"_v_"+r.nextInt(10)+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+r.nextInt(10)+".csv"));
 	        }
 
 	        else{
-	        	outputTarget = new StreamResult(new File("src/middleware-"+fyh[1]+'-'+fyh[2].replace(':', '_')+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv"));
 	        }
 	        
 	        
