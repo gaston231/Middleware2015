@@ -21,7 +21,7 @@ import org.w3c.dom.Document;
 
 
 public class crearCSV {
-	  public void parceXMLtoCSV(String input) throws Exception {
+	  public void parseXMLtoCSV(String input) throws Exception {
 	        File stylesheet = new File("C:\\Middleware\\style.xsl");
 	        File xmlSource = new File("C:\\Middleware\\in.xml");
 	             
