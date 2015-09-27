@@ -36,6 +36,7 @@ public class EmpresaVentaEntradas {
 			resultado.idCobro = idCobro;
 			resultado.codigoResultado = 0;
 			resultado.mensajeResultado = "OK";
+			cantidadEntradasDisponibles = cantidadEntradasDisponibles - cantidadEntradas;
 		}
 		resultado.idCliente = idCliente;
 		resultado.montoPagado = cantidadEntradas * precioUnitario;
