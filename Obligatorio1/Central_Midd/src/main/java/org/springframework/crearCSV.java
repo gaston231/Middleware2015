@@ -21,7 +21,7 @@ import org.w3c.dom.Document;
 
 
 public class crearCSV {
-	  public void parceXMLtoCSV(String input) throws Exception {
+	  public void parseXMLtoCSV(String input) throws Exception {
 	        File stylesheet = new File("C:\\Middleware\\style.xsl");
 	        File xmlSource = new File("C:\\Middleware\\in.xml");
 	             
@@ -29,13 +29,7 @@ public class crearCSV {
 		    fichero.write(input + "\r\n");
 		    fichero.close();
 		   
-		    
-	//
-	 //       DateFormat formatter  =  new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
-	 //       formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-	  //      Date d = formatter.parse(s);
-	      
-	//
+		
 	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
 	        Document document = builder.parse(xmlSource);
@@ -44,30 +38,23 @@ public class crearCSV {
 	        Transformer transformer = TransformerFactory.newInstance()
 	                .newTransformer(stylesource);
 	       
-	        //la entrada deberia ser fecha espacio hora espacio 
-	        String[] fyh = document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().toString().split("T");
-	       // System.out.println( document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().getNodeValue().toString());
-	        //System.out.println(fyh[1]);
-	        System.out.println(fyh[2]);
-	      
+	        
+	        String[] fyh = document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().toString().replace("[#text: ", "").split("T");
+	    
 	        Source source = new DOMSource(document);
-	        Path path = Paths.get("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+".csv");
+	        Path path = Paths.get("C:\\Middleware\\CSV\\middleware-"+fyh[0].replace('/', '_')+'-'+fyh[1].replace(':', 'h').replace("]", "s").replace("T", "")+".csv");
 
 	        Result outputTarget;
 	        int i= 1;
 	        if (Files.exists(path)) {
 	          // file exist
-	        	String s = path.toString().replace(".csv", "")+ "_v_";	
-	        	System.out.println(s);
+	        	String s = path.toString().replace(".csv", "")+ "_v_";		        	
 	        	while (Files.exists(Paths.get(s+i+".csv"))) i++;
-	        	System.out.println(i);
-	        		
-	        //Random r = new Random();
-	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+"_v_"+i+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[0].replace('/', '_')+'-'+fyh[1].replace(':', 'h').replace("]", "s").replace("T", "")+"_v_"+i+".csv"));
 	        }
 
 	        else{
-	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[0].replace('/', '_')+'-'+fyh[1].replace(':', 'h').replace("]", "s").replace("T", "")+".csv"));
 	        }
 	        
 	        

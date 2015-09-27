@@ -21,14 +21,13 @@
        http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-4.1.xsd">
 
 
+	<!-- RECEPCIÓN DE WEB SERVICE -->
 	<int-http:inbound-gateway request-channel="inboundChannel"
 		path="/ws-facturas/otherservices" supported-methods="POST"
 		reply-channel="response"/>	
 	
 	<int:channel id="response" />
-	
 	<int:channel id="inboundChannel"/>
-
 	
 	<int:service-activator input-channel="inboundChannel" output-channel="splitterInput" method="obtenerRequest">
    	 	<bean class="org.springframework.Request"/>
@@ -37,9 +36,9 @@
 	   <!--  SPLITTER -->
 	
 	<int:channel id="splitterInput" />
+
 	
-	<int:splitter input-channel="splitterInput"
-		output-channel="splitterOutput">
+	<int:splitter input-channel="splitterInput"	output-channel="splitterOutput">
 		<bean class="org.springframework.SplitterRequest"/>
 	</int:splitter>
 	
@@ -55,10 +54,9 @@
 	<int:channel id="requestPartnerPago" />
 	<int:channel id="requestPartnerVentaEntrada" />	
 	
-	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartner">
-             
-               <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
-       </int:chain>
+   <int:chain input-channel="requestPartnerPago" output-channel="responsePartner">
+       <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
+   </int:chain>
        
     <bean name="autenticacion" class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
     <property name="credentials">
@@ -68,23 +66,22 @@
         </bean>
     </property>
 	</bean>   
-        <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartner">
-             
-               <int-ws:outbound-gateway uri="https://localhost:8443/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
-       </int:chain>   
+	
+	<int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartner">         
+    	<int-ws:outbound-gateway uri="https://localhost:8443/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
+    </int:chain>   
  
 	
     <int:channel id="salidaOffLine" />
         
-      <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
-              <bean class="org.springframework.crearCSV"/>
-      </int:service-activator>
+    <int:service-activator input-channel="salidaOffLine" method="parseXMLtoCSV">
+        <bean class="org.springframework.crearCSV"/>
+    </int:service-activator>
        
        
      <!--  AGREGGATOR PARA JUNTAR LAS RESPUESTAS -->
      
-    <int:aggregator input-channel="responsePartner"
-		output-channel="response">		
+    <int:aggregator input-channel="responsePartner"	output-channel="response">		
 		<bean class="org.springframework.RespuestaAggregator"/>
 	</int:aggregator>
 	 
