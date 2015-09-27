@@ -47,11 +47,11 @@ public class crearCSV {
 	        //la entrada deberia ser fecha espacio hora espacio 
 	        String[] fyh = document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().toString().split("\\s");
 	       // System.out.println( document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().getNodeValue().toString());
-	        System.out.println(fyh[1]);
+	        //System.out.println(fyh[1]);
 	        System.out.println(fyh[2]);
 	      
 	        Source source = new DOMSource(document);
-	        Path path = Paths.get("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv");
+	        Path path = Paths.get("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+".csv");
 
 	        Result outputTarget;
 	        int i= 1;
@@ -63,11 +63,11 @@ public class crearCSV {
 	        	System.out.println(i);
 	        		
 	        //Random r = new Random();
-	        	outputTarget = new StreamResult(new File("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+i+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+"_v_"+i+".csv"));
 	        }
 
 	        else{
-	        	outputTarget = new StreamResult(new File("C:\\Middleware\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv"));
+	        	outputTarget = new StreamResult(new File("C:\\Middleware\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_').replace("]", "")+".csv"));
 	        }
 	        
 	        
