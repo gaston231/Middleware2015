@@ -51,11 +51,11 @@
 		<bean class="org.springframework.RouterConsulta"/>
 	</int:router>
 	
-		
+	<!-- WEBSERVICES PARTNERS -->	
 	<int:channel id="requestPartnerPago" />
 	<int:channel id="requestPartnerVentaEntrada" />	
 	
-	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartnerPago">
+	   <int:chain input-channel="requestPartnerPago" output-channel="responsePartner">
              
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaPagoFactura" />
        </int:chain>
@@ -68,15 +68,12 @@
         </bean>
     </property>
 	</bean>   
-        <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartnerVentaEntrada">
+        <int:chain input-channel="requestPartnerVentaEntrada" output-channel="responsePartner">
              
                <int-ws:outbound-gateway uri="http://localhost:8080/EmpresasPartner/EmpresaVentaEntradas"  message-sender="autenticacion"/>
        </int:chain>   
  
-	<stream:stdout-channel-adapter id="responsePartnerPago"/>
 	
-	<stream:stdout-channel-adapter id="responsePartnerVentaEntrada"/>     
-         
     <int:channel id="salidaOffLine" />
         
       <int:service-activator input-channel="salidaOffLine" method="parceXMLtoCSV">
@@ -84,21 +81,28 @@
       </int:service-activator>
        
        
+     <!--  AGREGGATOR PARA JUNTAR LAS RESPUESTAS -->
      
-     
-    
+    <int:aggregator input-channel="responsePartner"
+		output-channel="response">
+		<bean class="org.springframework.RespuestaAggregator"/>
+	</int:aggregator>
 	 
-	<!--  ROUTER CONFIGURACION DE RESPUESTA PARTNER -->
+	<!--  ROUTER CONFIGURACION DE RESPUESTA PARTNER
 	
 	
 	<int:router input-channel="responsePartnerPago">
 		<bean class="org.springframework.RespuestaPartner"/>
 	</int:router>
-
+ -->
        
-    <int:channel id="entradaLealtad"/>
+      <!--  JMS envio a cola  --> 
+      
+
 	<int:service-activator input-channel="entradaLealtad" method="enviarMensaje">
-		<bean class="org.springframework.envioJMSEndpoint"/>
-	</int:service-activator> 
+		<bean class="org.springframework.envioJMSEndpoint"/> 
+	</int:service-activator>   
+	
+
        
  </beans>
