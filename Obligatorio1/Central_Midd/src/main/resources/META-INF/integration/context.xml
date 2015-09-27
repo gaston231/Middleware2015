@@ -81,7 +81,7 @@
        
      <!--  AGREGGATOR PARA JUNTAR LAS RESPUESTAS -->
      
-    <int:aggregator input-channel="responsePartner"	output-channel="response">		
+    <int:aggregator input-channel="responsePartner"	output-channel="response" group-timeout="1000" send-partial-result-on-expiry = "true">		
 		<bean class="org.springframework.RespuestaAggregator"/>
 	</int:aggregator>
 	 

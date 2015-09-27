@@ -29,21 +29,27 @@ public class RespuestaAggregator {
 		
 		StringBuilder sb = new StringBuilder();   
 		
-	    
+		List<String> lealtad = new ArrayList<String>();
 		int i= 0;
 	    for (String respuesta : respuestas) {	    	 
-
+	    	
+	    	if (!respuesta.toLowerCase().contains("error"))
+	    		lealtad.add(respuesta);
+	    	//Añado siempre a la ventanilla
 	    	sb.append(respuesta).append("\n");
 			
 		}
 	    
+	    //ENVIO A LA COLA DE LEALTAD
 	 // Create the Message object
-		Message<List<String>> message = MessageBuilder.withPayload(respuestas).build();
+		Message<List<String>> message = MessageBuilder.withPayload(lealtad).build();
 	
 		// Send the Message to the handler's input channel
 		MessageChannel channel = channelResolver.resolveDestination("entradaLealtad");
 		channel.send(message);
-
+		
+		
+		//RETORNO A LA VENTANILLA
 	 
 		return sb.toString();
 	
