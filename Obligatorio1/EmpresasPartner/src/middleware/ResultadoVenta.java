@@ -13,4 +13,5 @@ public class ResultadoVenta {
 	ArrayList<String> codigosDeEntrada;
 	Integer codigoResultado;
 	String mensajeResultado;
+	double montoPagado;
 }

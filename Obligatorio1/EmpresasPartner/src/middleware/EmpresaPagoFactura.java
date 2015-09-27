@@ -47,6 +47,7 @@ public class EmpresaPagoFactura{
 		resultado.idCliente = idCliente;
 	    // Id de cobro de salida es el mismo que el id de factura de entrada
 		resultado.idCobro = idFactura;
+		resultado.montoPagado = monto;
 		return resultado;
     }
 }

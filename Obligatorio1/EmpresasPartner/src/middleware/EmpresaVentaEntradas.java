@@ -38,6 +38,7 @@ public class EmpresaVentaEntradas {
 			resultado.mensajeResultado = "OK";
 		}
 		resultado.idCliente = idCliente;
+		resultado.montoPagado = cantidadEntradas * precioUnitario;
 		return resultado;
     }
 

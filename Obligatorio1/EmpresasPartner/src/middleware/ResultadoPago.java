@@ -9,4 +9,5 @@ public class ResultadoPago {
 	Long idCobro;
 	Integer codigoResultado;
 	String mensajeResultado;
+	double montoPagado;
 }
