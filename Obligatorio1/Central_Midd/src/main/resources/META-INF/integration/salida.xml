@@ -4,10 +4,11 @@
       
          
          <mid:PagarFactura xmlns:mid="http://middleware/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-<arg0>23123</arg0>
-<arg1>1</arg1>
-<arg2>656</arg2>
-<arg3>26/02/3050 10:50</arg3>
+<arg0>98989</arg0>
+<arg1>5532</arg1>
+<arg2>1</arg2>
+<arg3>4543</arg3>
+<arg4>2002-05-30T09:30:10.5</arg4>
 </mid:PagarFactura>
       
    
