@@ -9,18 +9,20 @@
 		<xsl:choose>
 			<xsl:when test="nombreGestion='Entradas'">
 				<mid:ventaEntrada xmlns:mid="http://middleware/">
-					<arg0><xsl:value-of select="substring(datoAdicional,1,2)"/></arg0>
-					<arg1><xsl:call-template name="currency2"/></arg1>
-					<arg2><xsl:value-of select="substring(datoAdicional,4,5)"/></arg2>
-					<arg3><xsl:value-of select="$fecha"/></arg3>
+					<arg0><xsl:value-of select="$identificadorCliente"/></arg0>
+					<arg1><xsl:value-of select="substring(datoAdicional,1,2)"/></arg1>
+					<arg2><xsl:call-template name="currency2"/></arg2>
+					<arg3><xsl:value-of select="substring(datoAdicional,4,5)"/></arg3>
+					<arg4><xsl:value-of select="$fecha"/></arg4>
 				</mid:ventaEntrada>			
 			</xsl:when>
 			<xsl:when test="nombreGestion='Factura'">
 				<mid:PagarFactura xmlns:mid="http://middleware/">
-					<arg0><xsl:value-of select="identificadorPago"/></arg0>
-					<arg1><xsl:call-template name="currency"/></arg1>
-					<arg2><xsl:value-of select="monto"/></arg2>
-					<arg3><xsl:value-of select="$fecha"/></arg3>
+					<arg0><xsl:value-of select="$identificadorCliente"/></arg0>
+					<arg1><xsl:value-of select="identificadorPago"/></arg1>
+					<arg2><xsl:call-template name="currency"/></arg2>
+					<arg3><xsl:value-of select="monto"/></arg3>
+					<arg4><xsl:value-of select="$fecha"/></arg4>
 				</mid:PagarFactura>
 			</xsl:when>
 			<xsl:when test="nombreGestion='Offline'">
