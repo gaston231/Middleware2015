@@ -51,13 +51,19 @@ public class crearCSV {
 	        System.out.println(fyh[2]);
 	      
 	        Source source = new DOMSource(document);
-	        Path path = Paths.get("src/middleware-"+fyh[1]+'-'+fyh[2].replace(':', '_')+".csv");
+	        Path path = Paths.get("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+".csv");
 
 	        Result outputTarget;
+	        int i= 1;
 	        if (Files.exists(path)) {
 	          // file exist
-	        	Random r = new Random();
-	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+r.nextInt(10)+".csv"));
+	        	String s = path.toString().replace(".csv", "")+ "_v_";	
+	        	System.out.println(s);
+	        	while (Files.exists(Paths.get(s+i+".csv"))) i++;
+	        	System.out.println(i);
+	        		
+	        //Random r = new Random();
+	        	outputTarget = new StreamResult(new File("C:\\Users\\gastonnic\\FING\\middleware\\RepoGIT\\Middleware2015\\Obligatorio1\\Central_Midd\\src\\main\\resources\\META-INF\\integration\\CSV\\middleware-"+fyh[1].replace('/', '_')+'-'+fyh[2].replace(':', '_')+"_v_"+i+".csv"));
 	        }
 
 	        else{
