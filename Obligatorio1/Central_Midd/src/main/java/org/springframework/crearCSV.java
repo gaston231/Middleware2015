@@ -45,7 +45,7 @@ public class crearCSV {
 	                .newTransformer(stylesource);
 	       
 	        //la entrada deberia ser fecha espacio hora espacio 
-	        String[] fyh = document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().toString().split("\\s");
+	        String[] fyh = document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().toString().split("T");
 	       // System.out.println( document.getDocumentElement().getChildNodes().item(1).getNextSibling().getNextSibling().getFirstChild().getNodeValue().toString());
 	        //System.out.println(fyh[1]);
 	        System.out.println(fyh[2]);
