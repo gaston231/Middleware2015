@@ -32,21 +32,17 @@ public class RespuestaAggregator {
 	    
 		int i= 0;
 	    for (String respuesta : respuestas) {	    	 
-//	    	i+=1;
-//	    	if (i!=1)
-//	    		//saco los demas tags de xml
-//	    		respuesta = respuesta.replaceAll("<\\?xml.*?>", "");
-	    	// Create the Message object
+
 	    	sb.append(respuesta).append("\n");
 			
 		}
 	    
 	 // Create the Message object
-//		Message<List<String>> message = MessageBuilder.withPayload(respuestas).build();
+		Message<List<String>> message = MessageBuilder.withPayload(respuestas).build();
 	
 		// Send the Message to the handler's input channel
-//		MessageChannel channel = channelResolver.resolveDestination("entradaLealtad");
-		//channel.send(message);
+		MessageChannel channel = channelResolver.resolveDestination("entradaLealtad");
+		channel.send(message);
 
 	 
 		return sb.toString();
