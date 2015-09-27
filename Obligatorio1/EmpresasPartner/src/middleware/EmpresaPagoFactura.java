@@ -10,9 +10,9 @@ import com.sun.xml.ws.developer.SchemaValidation;
 @WebService
 @SchemaValidation
 public class EmpresaPagoFactura{
-	static Integer secuenciaFactura = 0;
+	//static Integer secuenciaFactura = 0;
 	@WebMethod
-	public ResultadoPago PagarFactura(Long idFactura, Short moneda, double monto, Date fechaHora) throws FacturaNoValida, MonedaNoValida {
+	public ResultadoPago PagarFactura(Long idCliente, Long idFactura, Short moneda, double monto, Date fechaHora) throws FacturaNoValida, MonedaNoValida {
     	ResultadoPago resultado = new ResultadoPago();
     	boolean huboError = false;
 		
@@ -39,12 +39,14 @@ public class EmpresaPagoFactura{
 			Integer resultadoError = -1;
 			resultado.idCobro = resultadoError.longValue();
 		} else {
-			secuenciaFactura++;
-			resultado.idCobro = secuenciaFactura.longValue();
+			//secuenciaFactura++;
+			//resultado.idCobro = secuenciaFactura.longValue();
 			resultado.codigoResultado = 0;
 			resultado.mensajeResultado = "OK";
 		}
-		
+		resultado.idCliente = idCliente;
+	    // Id de cobro de salida es el mismo que el id de factura de entrada
+		resultado.idCobro = idFactura;
 		return resultado;
     }
 }

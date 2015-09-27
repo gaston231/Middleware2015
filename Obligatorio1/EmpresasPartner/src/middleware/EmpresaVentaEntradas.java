@@ -16,7 +16,7 @@ public class EmpresaVentaEntradas {
 	static Integer idEntradas = 100000;
 	
 	@WebMethod
-	public ResultadoVenta ventaEntrada(Short cantidadEntradas, String codigoMoneda, double precioUnitario, Date fechaHora) throws CantidadNoDisponible{
+	public ResultadoVenta ventaEntrada(Long idCliente, Short cantidadEntradas, String codigoMoneda, double precioUnitario, Date fechaHora) throws CantidadNoDisponible{
 		ResultadoVenta resultado = new ResultadoVenta();
 		resultado.codigosDeEntrada = new ArrayList<String>();
 		Integer idCobroError = -1;
@@ -37,6 +37,7 @@ public class EmpresaVentaEntradas {
 			resultado.codigoResultado = 0;
 			resultado.mensajeResultado = "OK";
 		}
+		resultado.idCliente = idCliente;
 		return resultado;
     }
 
