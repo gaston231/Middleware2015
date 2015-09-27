@@ -34,7 +34,7 @@ public class JMS {
 
         
         // Recibo todos los mensajes disponibles
-        Message message = consumer.receive(100);
+        Message message = consumer.receive(10);
         while (message != null){
         	// Descompongo el mensaje recibido
             TextMessage textMessage = (TextMessage) message;
@@ -42,10 +42,10 @@ public class JMS {
             System.out.println("*** JMS: Mensaje recibido: " + text);
             
             // Agrego o actualizo el puntaje
-            String puntos = String.valueOf(Integer.parseInt(text.split("-")[1])/100);
+            String puntos = String.valueOf(Double.parseDouble(text.split("-")[1])/100);
             MySQLConsultas.agregarPuntaje(text.split("-")[0], puntos);
 	        
-	        message = consumer.receive(100);
+	        message = consumer.receive(10);
         }
         System.out.println("*** JMS: Puntajes actualizados");
         
