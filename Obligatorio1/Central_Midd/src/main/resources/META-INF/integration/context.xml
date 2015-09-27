@@ -88,7 +88,8 @@
      
     
 	 
-	<!--  ROUTER CONF -->
+	<!--  ROUTER CONFIGURACION DE RESPUESTA PARTNER -->
+	
 	
 	<int:router input-channel="responsePartnerPago">
 		<bean class="org.springframework.RespuestaPartner"/>
