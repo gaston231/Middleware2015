@@ -5,24 +5,22 @@
          <!--Optional:-->
          <arg0>
             <!--Optional:-->
-            <fechaCobro>26/02/3050 10:50</fechaCobro>
+            <fechaCobro>2002-05-30T09:30:10.5</fechaCobro>
             <!--Optional:-->
             <formaPago>E</formaPago>
-            <identificadorCliente>767676</identificadorCliente>
-            <numeroSucursal>87556</numeroSucursal>
+            <identificadorCliente>98989</identificadorCliente>
+            <numeroSucursal>23</numeroSucursal>
             <!--Zero or more repetitions:-->
             <pagos>
                <!--Optional:-->
                <codigoMoneda>UYU</codigoMoneda>
                <!--Zero or more repetitions:-->
-               <datoAdicional>carlos se caga</datoAdicional>
-               <identificadorPago>23123</identificadorPago>
-               <monto>656</monto>
+               <datoAdicional>123</datoAdicional>
+               <identificadorPago>5532</identificadorPago>
+               <monto>4543</monto>
                <!--Optional:-->
                <nombreGestion>Factura</nombreGestion>
             </pagos>
-           
-
          </arg0>
       </ser:recepcionPagos>
    </soapenv:Body>
