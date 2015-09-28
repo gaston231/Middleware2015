@@ -31,12 +31,19 @@
 	
 	<int:service-activator input-channel="inboundChannel" output-channel="splitterInput" method="obtenerRequest">
    	 	<bean class="org.springframework.Request"/>
-	</int:service-activator>	
+	</int:service-activator>
+	
+	
+
+    <int-xml:validating-filter id="schemaValidator" output-channel="someOutPutChannel" throw-exception-on-rejection="true" schema-location=" classpath:META-INF/integration/payment-service.xsd" input-channel="inboundChannel" discard-channel="pepito"/>
+		<stream:stdout-channel-adapter id="pepito"/>
 	   
+	   <stream:stdout-channel-adapter id="pepito"/>
+	    <stream:stdout-channel-adapter id="someOutPutChannel"/>
 	   <!--  SPLITTER -->
 	
 	<int:channel id="splitterInput" />
-
+	<int:channel id="someOutPutChannel" />
 	
 	<int:splitter input-channel="splitterInput"	output-channel="splitterOutput">
 		<bean class="org.springframework.SplitterRequest"/>
